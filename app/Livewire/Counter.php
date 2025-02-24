@@ -11,6 +11,7 @@ class Counter extends Component
     public $nama;
     public $email ;
     public $alamat;
+    public $dataCounter;
 
     public function store(){
         $rules = [
