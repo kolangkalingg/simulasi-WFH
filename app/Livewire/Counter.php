@@ -17,6 +17,7 @@ class Counter extends Component
     public $updateData = false;
     public $counter_id;
     public $katakunci;
+    public $counter_selected_id = [];
 
     public function store(){
         $rules = [
@@ -46,7 +47,8 @@ class Counter extends Component
         $this->counter_id = $id;
     }
 
-    public function update(){
+    public function update()
+    {
         $rules = [
             'nama' => 'required',
             'email' => 'required|email',
@@ -66,24 +68,36 @@ class Counter extends Component
         $this->clear();
     }
 
-    public function clear(){
+    public function clear()
+    {
         $this->nama = '';
         $this->email = '';
         $this->alamat = '';
 
         $this->updateData = false;
         $this->counter_id = '';
+        $this->counter_selected_id = [];
     }
 
-    public function delete(){
-        $id = $this->counter_id;
-        ModelsCounter::find($id)->delete();
+    public function delete()
+    {
+        if($this->counter_id != ''){
+            $id = $this->counter_id;
+            ModelsCounter::find($id)->delete();
+        }
+        if(count($this->counter_selected_id)){
+            for($x= 0; $x < count($this->counter_selected_id); $x++){
+                ModelsCounter::find($this->counter_selected_id[$x])->delete();
+            }
+        }
         session()->flash('message', 'Data Berhasil di-delete');
         $this->clear();
     }
 
     public function delete_confirmation($id){
-        $this->counter_id = $id;
+        if ($id != ''){
+            $this->counter_id = $id;
+        }
     }
 
     public function render()
