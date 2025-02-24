@@ -18,6 +18,8 @@ class Counter extends Component
     public $counter_id;
     public $katakunci;
     public $counter_selected_id = [];
+    public $sortColumn = 'nama';
+    public $sortDirection = 'asc';
 
     public function store(){
         $rules = [
@@ -100,15 +102,21 @@ class Counter extends Component
         }
     }
 
+    public function sort($columnName)
+    {
+        $this->sortColumn = $columnName;
+        $this->sortDirection = $this->sortDirection == 'asc'?'desc':'asc';
+    }
+
     public function render()
     {
         if ($this->katakunci != null) {
             $data = ModelsCounter::where('nama', 'like', '%'.$this->katakunci. '%')
             ->orwhere('email', 'like', '%'.$this->katakunci. '%')
             ->orwhere('alamat', 'like', '%'.$this->katakunci. '%')
-            ->orderBy('nama','asc')->paginate(2);
+            ->orderBy($this->sortColumn,$this->sortDirection)->paginate(2);
         } else{
-        $data = ModelsCounter::orderBy('nama','asc')->paginate(2);
+        $data = ModelsCounter::orderBy($this->sortColumn,$this->sortDirection)->paginate(2);
         }
         return view('livewire.counter', ['dataCounters' => $data]);
     }
