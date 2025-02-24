@@ -4,13 +4,17 @@ namespace App\Livewire;
 
 use App\Models\Counter as ModelsCounter;
 use Livewire\Component;
+use Livewire\WithPagination;
 
 class Counter extends Component
 {
+    use WithPagination;
+    protected $paginationTheme = 'bootstrap';
 
     public $nama;
     public $email ;
     public $alamat;
+    // public $dataCounters;
 
     public function store(){
         $rules = [
@@ -31,6 +35,7 @@ class Counter extends Component
 
     public function render()
     {
-        return view('livewire.counter');
+        $data = ModelsCounter::orderBy('nama','asc')->paginate(2);
+        return view('livewire.counter', ['dataCounters' => $data]);
     }
 }
