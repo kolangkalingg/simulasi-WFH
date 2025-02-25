@@ -114,9 +114,9 @@ class Counter extends Component
             $data = ModelsCounter::where('nama', 'like', '%'.$this->katakunci. '%')
             ->orwhere('email', 'like', '%'.$this->katakunci. '%')
             ->orwhere('alamat', 'like', '%'.$this->katakunci. '%')
-            ->orderBy($this->sortColumn,$this->sortDirection)->paginate(2);
+            ->orderBy($this->sortColumn,$this->sortDirection)->paginate(1);
         } else{
-        $data = ModelsCounter::orderBy($this->sortColumn,$this->sortDirection)->paginate(2);
+        $data = ModelsCounter::orderBy($this->sortColumn,$this->sortDirection)->paginate(10);
         }
         return view('livewire.counter', ['dataCounters' => $data]);
     }
