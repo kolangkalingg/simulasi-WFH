@@ -19,22 +19,7 @@
             </div>
         </div>
     @endif
-
-    <style>
-        .btn-primary:hover {
-            background-color: #0069d9;
-            border-color: #0062cc;
-        }
-        .btn-danger:hover {
-            background-color: #c82333;
-            border-color: #bd2130;
-        }
-        .btn-secondary:hover {
-            background-color: #5a6268;
-            border-color: #545b62;
-        }
-    </style>
-{{-- START FROM 1 --}}
+    <!-- START FORM -->
     <div class="my-3 p-3 bg-body rounded shadow-sm">
         <div class="card">
             <div class="card-header bg-primary text-white">
@@ -42,7 +27,6 @@
             </div>
             <div class="card-body">
                 <form>
-    <!-- START FORM -->
                     <div class="my-3 p-3 bg-body rounded shadow-sm">
                         <form>
                             <div class="mb-3 row">
@@ -66,26 +50,29 @@
                             <div class="mb-3 row">
                                 <label class="col-sm-2 col-form-label"></label>
                                 <div class="col-sm-10">
-                                @if ($updateData == false)
-                                <button type="button" class="btn btn-primary" name="submit" wire:click='store()' >SIMPAN</button>
-                                @else
-                                <button type="button" class="btn btn-primary" name="submit" wire:click='update()' >UPDATE</button>
-                                @endif
-                                <button type="button" class="btn btn-secondary" name="submit" wire:click='clear()' >CLEAR</button>
+                                   @if ($updateData == false)
+                                   <button type="button" class="btn btn-primary" name="submit" wire:click='store()' >SIMPAN</button>
+                                   @else
+                                   <button type="button" class="btn btn-primary" name="submit" wire:click='update()' >UPDATE</button>
+                                   @endif
+                                   <button type="button" class="btn btn-secondary" name="submit" wire:click='clear()' >CLEAR</button>
                                 </div>
                             </div>
                         </form>
                     </div>
-    <!-- AKHIR FORM -->
                 </form>
             </div>
         </div>
     </div>
-{{-- END FORM 1 --}}
+    
+    <!-- AKHIR FORM -->
 
     <!-- START DATA -->
     <div class="my-3 p-3 bg-body rounded shadow-sm">
-        <h1>Data Karyawan</h1>
+        <div class="card">
+            <div class="card-header bg-primary text-white">
+                <h5 class="card-title mb-0">Form Data Karyawan</h5>
+            </div>
         <div class="pb-3 pt-3">
             <input type="text" class="form-control mb-3 w-25" placeholder="Search.." wire:model.live='katakunci'>
         </div>
@@ -122,6 +109,7 @@
                 @endforeach
             </tbody>
         </table>
+        </div>
         {{ $dataCounters->links() }}
     </div>
     <!-- AKHIR DATA -->
