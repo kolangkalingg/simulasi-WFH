@@ -69,10 +69,14 @@
 
     <!-- START DATA -->
     <div class="my-3 p-3 bg-body rounded shadow-sm">
+<<<<<<< HEAD
         <div class="card">
             <div class="card-header bg-primary text-white">
                 <h5 class="card-title mb-0">Form Data Karyawan</h5>
             </div>
+=======
+        <h1>Data Pegawai</h1>
+>>>>>>> 956de73beaf2c25c01cd2f5755bc265ceff7d0c2
         <div class="pb-3 pt-3">
             <input type="text" class="form-control mb-3 w-25" placeholder="Search.." wire:model.live='katakunci'>
         </div>
